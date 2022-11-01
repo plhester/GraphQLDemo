@@ -36,38 +36,6 @@ namespace GraphQLDemo
 
             await SeedDataAsync(app);
 
-            using (IServiceScope scope = app.Services.CreateScope())
-            {
-                IDbContextFactory<SomeDbContext> dbContextFactory = scope.ServiceProvider.GetService<IDbContextFactory<SomeDbContext>>();
-                using SomeDbContext context = dbContextFactory!.CreateDbContext();
-                await context.Database.EnsureDeletedAsync();
-                //context.Database.Migrate();
-                await context.Database.EnsureCreatedAsync();
-
-                if (!await context.Users.AnyAsync())
-                {
-                    context.Users.AddRange(
-                        new User { Name = "Paul" },
-                        new User { Name = "Michael" }
-                        );
-
-                    await context.SaveChangesAsync();
-
-                    context.Addresses.AddRange(
-                        new UserAddress { UserId = 1, Email = "plhester@msn.com" },
-                        new UserAddress { UserId = 1, Email = "plhester@gmail.com" },
-                        new UserAddress { UserId = 1, Email = "plhester@interplat.com" },
-                        new UserAddress { UserId = 1, Email = "paul.hester@spectrummedical.com" },
-                        new UserAddress { UserId = 2, Email = "michael@chillicream.com" }
-                        );
-
-                    await context.SaveChangesAsync();
-
-                    context.ChangeTracker.Clear();
-                }
-            }
-
-
             await app.RunAsync();
         }
 
@@ -82,8 +50,8 @@ namespace GraphQLDemo
             if (!await context.Users.AnyAsync())
             {
                 context.Users.AddRange(
-                    new User { Name = "Paul" },
-                    new User { Name = "Michael" }
+                    new User { Name = "Paul Hester" },
+                    new User { Name = "Michael Staib" }
                     );
 
                 await context.SaveChangesAsync();
@@ -93,7 +61,8 @@ namespace GraphQLDemo
                     new UserAddress { UserId = 1, Email = "plhester@gmail.com" },
                     new UserAddress { UserId = 1, Email = "plhester@interplat.com" },
                     new UserAddress { UserId = 1, Email = "paul.hester@spectrummedical.com" },
-                    new UserAddress { UserId = 2, Email = "michael@chillicream.com" }
+                    new UserAddress { UserId = 2, Email = "michael@chillicream.com" },
+                    new UserAddress { UserId = 2, Email = "michael.staib@hotmail.com" }
                     );
 
                 await context.SaveChangesAsync();
