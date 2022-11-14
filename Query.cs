@@ -8,7 +8,7 @@
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        [GraphQLDescription("Returns a Connection containing a list of Users that can easily be sorted, filtered, or paginated in any direction.")]
+        [GraphQLDescription("Returns a Connection containing a list of Users that can easily be paginated, filtered, or sorted in any direction.")]
         public IQueryable<User> GetUsers([ScopedService] SomeDbContext ctx)
         {
             return ctx.Users;

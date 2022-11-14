@@ -15,7 +15,7 @@ namespace GraphQLDemo
         [UsePaging]   //TODO: This doesn't seem to work! Cause HC exceptions for some reason!
         [UseFiltering]
         [UseSorting]
-        [GraphQLDescription("Returns a Connection containing a list of Addresses for the User that can easily be sorted, filtered, or paginated in any direction.")]
+        [GraphQLDescription("Returns a Connection containing a list of Addresses for the User that can easily be paginated, filtered, or sorted in any direction.")]
         public virtual ICollection<UserAddress> Addresses { get; set; }
     }
 }

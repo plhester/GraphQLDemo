@@ -1,3 +1,4 @@
+using HotChocolate.Types.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphQLDemo
@@ -20,6 +21,12 @@ namespace GraphQLDemo
                 .AddProjections()
                 .AddFiltering()
                 .AddSorting()
+                .SetPagingOptions(new PagingOptions
+                {
+                    MaxPageSize = 1000,
+                    DefaultPageSize = 100,
+                    IncludeTotalCount = true,
+                })
                 .AddGlobalObjectIdentification()
                 .InitializeOnStartup()
                 .RegisterDbContext<SomeDbContext>(DbContextKind.Pooled)
